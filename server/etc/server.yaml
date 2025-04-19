@@ -1,0 +1,10 @@
+Name: FileBrowser
+Host: 0.0.0.0
+Port: 9121
+Log:
+  Encoding: plain
+Auth:
+  AccessSecret: wLnOk8keh/WO5u7lX8H1dB1/mcuHvnI/jfWCMXMPg9o=
+  AccessExpire: 3153600000
+RoutePath: /
+Database: filebrowser.db

@@ -1,0 +1,57 @@
+info (
+	author: "hongyx2014@126.com"
+	date: "2025-04-14"
+	desc: "FileBrowser文件浏览器"
+	version: "v1.1.0"
+)
+
+import (
+	"apis/auth.api"
+	"apis/db.api"
+	"apis/s3.api"
+)
+type (
+	ListFileRequest {
+		Path string `form:"path,optional"`
+	}
+	DownloadRequest {
+		File string `form:"file"`
+	}
+	UploadRequest {
+		Path string `form:"path"`
+		UID  int    `form:"uid,optional"`
+		GID  int    `form:"gid,optional"`
+	}
+	Response {
+		Code    int64       `json:"code"`
+		Message string      `json:"message,omitempty"`
+		Data    interface{} `json:"data,omitempty"`
+	}
+)
+@server(
+	prefix: /filebrowser
+	jwt: Auth
+	middleware: Validateuser
+)
+service server {
+	@handler version
+	get /version returns (Response)
+	
+	@handler drivers
+	get /drivers returns (Response)
+	
+	@handler listfile
+	get /listfile (ListFileRequest) returns (Response)
+	
+	@handler rootpath
+	get /rootpath returns (Response)
+	
+	@handler download
+	post /download (DownloadRequest)
+	
+	@handler upload
+	post /upload (UploadRequest) returns (Response)
+	
+	@handler mkdir
+	post /mkdir (UploadRequest) returns (Response)
+}

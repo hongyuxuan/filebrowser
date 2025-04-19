@@ -1,0 +1,11 @@
+*.exe
+**/bin
+*.db
+*.log
+**/logs
+**/cache
+**/dist
+**/.gz
+*.gz
+PACKAGE_NAME
+TAG_NAME

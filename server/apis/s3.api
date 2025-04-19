@@ -1,0 +1,34 @@
+type (
+  ListBucketRequest {
+    Name string `form:"name"`
+  }
+  ListObjectRequest {
+    Name string `form:"name"`
+    Path string `form:"path"`
+  }
+)
+@server(
+	prefix: /filebrowser/s3
+	group: s3
+	jwt: Auth
+  middleware: Validateuser
+)
+service server {
+  @handler listconn
+	get /listconnections returns (Response)
+
+  @handler listbucket
+	get /listbuckets (ListBucketRequest) returns (Response)
+
+  @handler listobject
+	get /listobjects (ListObjectRequest) returns (Response)
+
+  @handler downloadobject
+	post /downloadobject (ListObjectRequest) returns (Response)
+
+  @handler mkdir
+	post /mkdir (ListObjectRequest) returns (Response)
+
+  @handler upload
+	post /upload (ListObjectRequest) returns (Response)
+}

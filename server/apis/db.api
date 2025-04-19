@@ -1,0 +1,43 @@
+type (
+	DataByIdReq {
+		Tablename string `path:"tablename"`
+		Id        string `path:"id"`
+	}
+)
+@server(
+	prefix: /filebrowser/db
+	group: db
+	jwt: Auth
+  middleware: Validateuser
+)
+service server {
+	@doc(
+		summary: 获取表数据
+	)
+	@handler listdata
+	get /:tablename returns (Response)
+	
+	@doc(
+		summary: 根据ID获取表数据
+	)
+	@handler getdata
+	get /:tablename/:id (DataByIdReq) returns (Response)
+	
+	@doc(
+		summary: 新增表数据
+	)
+	@handler createdata
+	post /:tablename returns (Response)
+	
+	@doc(
+		summary: 根据ID更新数据
+	)
+	@handler updatedata
+	put /:tablename/:id returns (Response)
+	
+	@doc(
+		summary: 根据ID删除数据
+	)
+	@handler deletedata
+	delete /:tablename/:id (DataByIdReq) returns (Response)
+}
