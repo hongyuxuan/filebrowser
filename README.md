@@ -1,6 +1,8 @@
 # FileBrowser - 轻量级文件浏览器
 
-Filebrowser是一个轻量级的文件浏览器，支持 Windows / Linux 系统，及兼容 S3 的对象存储（如 Minio）。特别适用于服务器上文件的存取，可替代 FTP、vsFTP、SMB等文件服务器，以及 Docker / Kuberntes Pod 中 PVC 挂载盘上文件的存取。
+Filebrowser是一个轻量级的文件浏览器，支持 Windows / Linux 系统，及兼容 S3 的对象存储（如 Minio）。特别适用于服务器上文件的存取，可替代 FTP、vsFTP、SMB等文件服务器，以及 Docker / Kuberntes Pod 中 PVC 挂载盘上文件的存取。首页示例图如下：
+
+![home](ui/public/images/home.png)
 
 # 功能
 - Windows 设备和驱动器浏览、文件浏览、下载、搜索、创建目录、文件上传
