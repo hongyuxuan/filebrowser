@@ -55,18 +55,24 @@
     <h4 v-if="edit===true">编辑S3连接</h4>
   </template>
   <template #default>
-    <el-form ref="repo" :model="form" :rules="rules" label-width="100px">
+    <el-form ref="repo" :model="form" :rules="rules" label-width="110px">
       <el-form-item label="名称" prop="name">
         <el-input v-model="form.name" size="large" clearable />
       </el-form-item>
       <el-form-item label="S3地址" prop="s3_endpoint">
         <el-input v-model="form.s3_endpoint" size="large" clearable />
       </el-form-item>
+      <el-form-item label="S3 Region" prop="s3_region">
+        <el-input v-model="form.s3_region" size="large" clearable />
+      </el-form-item>
       <el-form-item label="S3 AccessKey" prop="s3_access_key">
         <el-input v-model="form.s3_access_key" size="large" clearable />
       </el-form-item>
       <el-form-item label="S3 SecretKey" prop="s3_secret_key">
         <el-input v-model="form.s3_secret_key" type="password" size="large" clearable />
+      </el-form-item>
+      <el-form-item label="开启Secure" prop="use_secure">
+        <el-checkbox v-model="form.use_secure" />
       </el-form-item>
     </el-form>
   </template>

@@ -44,7 +44,8 @@ func (l *CreatedataLogic) Createdata(tablename string, data map[string]interface
 		var client *minio.Client
 		if client, err = minio.New(s3repo.S3Endpoint, &minio.Options{
 			Creds:  credentials.NewStaticV4(s3repo.S3AccessKey, s3repo.S3SecretKey, ""),
-			Secure: false,
+			Region: s3repo.S3Region,
+			Secure: s3repo.UseSecure,
 		}); err != nil {
 			l.Logger.Errorf("Failed to connect to s3_endpoint: %s: %v", s3repo.S3Endpoint, err)
 			return

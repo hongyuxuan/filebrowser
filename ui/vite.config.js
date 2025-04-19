@@ -28,7 +28,7 @@ export default defineConfig({
     port: '80',
     proxy: {
       '/filebrowser': {
-        target: 'http://localhost:8080',
+        target: 'http://localhost:9121',
       }
     }
   }

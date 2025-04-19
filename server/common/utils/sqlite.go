@@ -139,9 +139,13 @@ func InitDB(db *gorm.DB) {
 		} else {
 			logx.Infof("Password of user admin is: %s , please modified it when you first login", generatedPassword)
 		}
+	} else {
+		db.AutoMigrate(&commontypes.User{})
 	}
 	if ok := db.Migrator().HasTable("s3_repository"); !ok {
 		db.AutoMigrate(&commontypes.S3Repository{})
 		logx.Infof("Create table `s3_repository` success")
+	} else {
+		db.AutoMigrate(&commontypes.S3Repository{})
 	}
 }

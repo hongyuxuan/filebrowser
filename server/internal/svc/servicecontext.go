@@ -56,7 +56,8 @@ func (s *ServiceContext) SetS3() {
 	for _, s3 := range s3repos {
 		client, err := minio.New(s3.S3Endpoint, &minio.Options{
 			Creds:  credentials.NewStaticV4(s3.S3AccessKey, s3.S3SecretKey, ""),
-			Secure: false,
+			Region: s3.S3Region,
+			Secure: s3.UseSecure,
 		})
 		if err != nil {
 			logx.Errorf("Failed to connect to s3_endpoint: %s: %v", s3.S3Endpoint, err)
