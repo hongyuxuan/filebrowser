@@ -114,7 +114,13 @@ const getList = async (page) => {
   let url = `page=${page}&size=${pageSize.value}`
   if(searchKey.value != "") url += `&search=repo_url==${searchKey.value}`
   let response = await axios.get(`/filebrowser/db/s3_repository?${url}`)
-  list.value = response.results
+  list.value = response.results.map(x => {
+    if(x.use_secure === 1) 
+      x.use_secure = true
+    else
+      x.use_secure = false
+    return x
+  })
   pageTotal.value = response.total
 }
 const confirmClick = async (f) => {
