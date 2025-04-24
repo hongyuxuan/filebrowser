@@ -66,6 +66,7 @@ func (s *ServiceContext) SetS3() {
 		logx.Infof("Successfully connect to s3_endpoint: %s", s3.S3Endpoint)
 		s.S3Conn[s3.Name] = commontypes.S3Conn{
 			S3Endpoint: s3.S3Endpoint,
+			S3Region:   s3.S3Region,
 			Client:     client,
 		}
 	}

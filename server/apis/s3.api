@@ -6,6 +6,12 @@ type (
     Name string `form:"name"`
     Path string `form:"path"`
   }
+  CreateBucketRequest {
+    Name          string `form:"name"`
+    BucketName    string `json:"bucket_name"`
+    Versioning    bool   `json:"versioning,optional"`
+    ObjectLocking bool   `json:"object_locking,optional"`
+  }
 )
 @server(
 	prefix: /filebrowser/s3
@@ -23,12 +29,33 @@ service server {
   @handler listobject
 	get /listobjects (ListObjectRequest) returns (Response)
 
-  @handler downloadobject
-	post /downloadobject (ListObjectRequest) returns (Response)
+  // @handler downloadobject
+	// post /downloadobject (ListObjectRequest) returns (Response)
 
   @handler mkdir
 	post /mkdir (ListObjectRequest) returns (Response)
 
   @handler upload
 	post /upload (ListObjectRequest) returns (Response)
+
+  @handler preview
+	get /preview (ListObjectRequest)
+
+  @handler delete
+	delete /delete (ListObjectRequest) returns (Response)
+
+  @handler createbucket
+  post /createbucket (CreateBucketRequest) returns (Response)
+
+  @handler deletebucket
+  delete /deletebucket (CreateBucketRequest) returns (Response)
+}
+
+@server(
+	prefix: /filebrowser/s3
+	group: s3
+)
+service server {
+  @handler downloadobject
+	get /downloadobject (ListObjectRequest) returns (Response)
 }

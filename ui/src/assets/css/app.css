@@ -198,7 +198,7 @@ ul:not(.el-upload-list) {
 }
 
 .el-dialog__body {
-  padding-top: 15px !important;
+  padding-top: 5px !important;
 }
 
 .box.box-item {
@@ -436,4 +436,18 @@ pre p.break-line {
 }
 .el-alert.top-fixed-alert .el-alert__close-btn {
   top: 20px;
+}
+
+.minimize-screen-height {
+  height: calc(100vh - 191px)
+}
+.full-screen-height {
+  height: calc(100vh - 85px)
+}
+
+.hover-container:hover .hover-show {
+  display: block;
+}
+.hover-show {
+  display: none;
 }

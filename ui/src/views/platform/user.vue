@@ -131,14 +131,10 @@ const confirmClick = async (f) => {
         let id = params.id
         delete params.id
         delete params.password
-        await axios.put(`/lizardcd/db/user/${id}`, {body:params})
+        await axios.put(`/filebrowser/db/user/${id}`, params)
         getList(current.value)
-        current.value = 1
         show.value = false
       }
-    }
-    else {
-      ElMessage.warning('必填项未填完')
     }
   })
 }

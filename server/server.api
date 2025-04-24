@@ -46,12 +46,26 @@ service server {
 	@handler rootpath
 	get /rootpath returns (Response)
 	
-	@handler download
-	post /download (DownloadRequest)
+	// @handler download
+	// post /download (DownloadRequest)
 	
 	@handler upload
 	post /upload (UploadRequest) returns (Response)
 	
 	@handler mkdir
 	post /mkdir (UploadRequest) returns (Response)
+	
+	@handler preview
+	get /preview (DownloadRequest) returns (Response)
+	
+	@handler delete
+	delete /delete (DownloadRequest) returns (Response)
+}
+
+@server(
+	prefix: /filebrowser
+)
+service server {
+	@handler download
+	get /download (DownloadRequest)
 }

@@ -17,24 +17,26 @@
       导航
     </div>
     <el-menu
-        active-text-color="#ffd04b"
-        background-color="#141f29"
-        class="el-menu-vertical-demo"
-        default-active="2"
-        text-color="#fff"
-        :unique-opened="true"
-        :router="true">
-        <el-menu-item index="/"><font-awesome-icon icon="home" />首页</el-menu-item>
-        <el-menu-item index="/list"><font-awesome-icon icon="list" />文件列表</el-menu-item>
+      active-text-color="#ffd04b"
+      background-color="#141f29"
+      class="el-menu-vertical-demo"
+      :default-active="activeIndex"
+      text-color="#fff"
+      :unique-opened="true"
+      :router="true">
+      <el-menu-item index="/"><font-awesome-icon icon="home" />首页</el-menu-item>
+      <el-menu-item index="/list"><font-awesome-icon icon="list" />文件列表</el-menu-item>
     </el-menu>
   </el-scrollbar>
 </template>
 
 <script setup>
-import { onBeforeMount, ref, computed } from 'vue'
+import { onBeforeMount, ref, computed, watch } from 'vue'
+import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 /* 变量定义 */
 const store = useStore()
+const router = useRouter()
 const avatar = computed(() => {
   return "/images/avator.png"
 })
@@ -42,6 +44,14 @@ const username = computed(() => {
   return store.state.userInfo.username
 })
 const isCollapse = ref({})
+const activeIndex = ref("/")
+/* watch */
+watch(
+  () => router.currentRoute.value,
+  (newVal, oldVal) => {
+    activeIndex.value = newVal.path
+  }
+)
 /* 生命周期函数 */
 onBeforeMount(async () => {
   isCollapse.value = false

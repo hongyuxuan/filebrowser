@@ -34,7 +34,6 @@ func (l *ListobjectLogic) Listobject(req *types.ListObjectRequest) (resp *types.
 		req.Path += "/"
 	}
 	bucket, path := utils.GetS3BucketAndPath(req.Path)
-	// 列出对象
 	if _, ok := l.svcCtx.S3Conn[req.Name]; !ok {
 		err = errorx.NewDefaultError("Cannot find s3_endpoint with name: %s", req.Name)
 		l.Logger.Error(err)
