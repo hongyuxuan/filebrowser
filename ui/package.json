@@ -14,8 +14,9 @@
     "@fortawesome/vue-fontawesome": "^3.0.8",
     "axios": "^1.8.4",
     "clipboard": "^2.0.11",
-    "element-plus": "^2.9.6",
+    "element-plus": "^2.9.8",
     "file": "file:",
+    "file-saver": "^2.0.5",
     "filesize": "^10.1.6",
     "lodash": "^4.17.21",
     "moment": "^2.30.1",
@@ -23,6 +24,7 @@
     "vite-plugin-vue-devtools": "^7.7.2",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0",
+    "vue3-ace-editor": "^2.2.4",
     "vuex": "^4.1.0"
   },
   "devDependencies": {

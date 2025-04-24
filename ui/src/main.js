@@ -13,8 +13,8 @@ import router from './router'
 /* 加载 font-awesome */
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import {faGears,faCircle,faHome,faInbox,faList,faFolder,faDatabase} from '@fortawesome/free-solid-svg-icons'
-library.add(faGears,faCircle,faHome,faInbox,faList,faFolder,faDatabase)
+import {faGears,faCircle,faHome,faInbox,faList,faFolder,faDatabase,faExpand,faMinimize} from '@fortawesome/free-solid-svg-icons'
+library.add(faGears,faCircle,faHome,faInbox,faList,faFolder,faDatabase,faExpand,faMinimize)
 
 /* 加载 element-plus */
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'

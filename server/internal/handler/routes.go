@@ -39,11 +39,6 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				},
 				{
 					Method:  http.MethodPost,
-					Path:    "/download",
-					Handler: downloadHandler(serverCtx),
-				},
-				{
-					Method:  http.MethodPost,
 					Path:    "/upload",
 					Handler: uploadHandler(serverCtx),
 				},
@@ -52,9 +47,30 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 					Path:    "/mkdir",
 					Handler: mkdirHandler(serverCtx),
 				},
+				{
+					Method:  http.MethodGet,
+					Path:    "/preview",
+					Handler: previewHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodDelete,
+					Path:    "/delete",
+					Handler: deleteHandler(serverCtx),
+				},
 			}...,
 		),
 		rest.WithJwt(serverCtx.Config.Auth.AccessSecret),
+		rest.WithPrefix("/filebrowser"),
+	)
+
+	server.AddRoutes(
+		[]rest.Route{
+			{
+				Method:  http.MethodGet,
+				Path:    "/download",
+				Handler: downloadHandler(serverCtx),
+			},
+		},
 		rest.WithPrefix("/filebrowser"),
 	)
 
@@ -147,11 +163,6 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				},
 				{
 					Method:  http.MethodPost,
-					Path:    "/downloadobject",
-					Handler: s3.DownloadobjectHandler(serverCtx),
-				},
-				{
-					Method:  http.MethodPost,
 					Path:    "/mkdir",
 					Handler: s3.MkdirHandler(serverCtx),
 				},
@@ -160,9 +171,40 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 					Path:    "/upload",
 					Handler: s3.UploadHandler(serverCtx),
 				},
+				{
+					Method:  http.MethodGet,
+					Path:    "/preview",
+					Handler: s3.PreviewHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodDelete,
+					Path:    "/delete",
+					Handler: s3.DeleteHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodPost,
+					Path:    "/createbucket",
+					Handler: s3.CreatebucketHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodDelete,
+					Path:    "/deletebucket",
+					Handler: s3.DeletebucketHandler(serverCtx),
+				},
 			}...,
 		),
 		rest.WithJwt(serverCtx.Config.Auth.AccessSecret),
+		rest.WithPrefix("/filebrowser/s3"),
+	)
+
+	server.AddRoutes(
+		[]rest.Route{
+			{
+				Method:  http.MethodGet,
+				Path:    "/downloadobject",
+				Handler: s3.DownloadobjectHandler(serverCtx),
+			},
+		},
 		rest.WithPrefix("/filebrowser/s3"),
 	)
 }

@@ -86,5 +86,6 @@ type ListResult struct {
 
 type S3Conn struct {
 	S3Endpoint string        `json:"s3_endpoint"`
+	S3Region   string        `json:"s3_region"`
 	Client     *minio.Client `json:"client"`
 }

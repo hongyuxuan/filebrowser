@@ -28,6 +28,7 @@ import { useStore } from 'vuex'
 import Sidebar from './components/sidebar.vue'
 import HeadBar from './components/header.vue'
 import { axios } from '/src/assets/util/axios'
+import { getSettings } from '/src/assets/util/common'
 import _ from 'lodash'
 /* 变量定义 */
 const store = useStore()
@@ -49,6 +50,7 @@ watch(
 onBeforeMount(async () => {
   await checkLogin()
   getVersion()
+  store.state.settings = await getSettings()
 })
 /* methods */
 const checkLogin = async () => {

@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/glebarez/sqlite"
+	"github.com/hongyuxuan/filebrowser/common/types"
 	commontypes "github.com/hongyuxuan/filebrowser/common/types"
 	"github.com/zeromicro/go-zero/core/logx"
 	"go.opentelemetry.io/otel"
@@ -129,6 +130,7 @@ func SetTx(tx *gorm.DB, req *commontypes.GetDataReq, count *int64, role string, 
 }
 
 func InitDB(db *gorm.DB) {
+	// user
 	if ok := db.Migrator().HasTable("user"); !ok {
 		db.AutoMigrate(&commontypes.User{})
 		logx.Infof("Create table `user` success")
@@ -142,10 +144,22 @@ func InitDB(db *gorm.DB) {
 	} else {
 		db.AutoMigrate(&commontypes.User{})
 	}
+	// s3_repository
 	if ok := db.Migrator().HasTable("s3_repository"); !ok {
 		db.AutoMigrate(&commontypes.S3Repository{})
 		logx.Infof("Create table `s3_repository` success")
 	} else {
 		db.AutoMigrate(&commontypes.S3Repository{})
+	}
+	// settings
+	if ok := db.Migrator().HasTable("settings"); !ok {
+		db.AutoMigrate(&commontypes.Settings{})
+		logx.Infof("Create table `settings` success")
+		db.Save(&types.Settings{
+			SettingKey:   "preview_file_size",
+			SettingValue: "67108864", // 默认64MB
+		})
+	} else {
+		db.AutoMigrate(&commontypes.Settings{})
 	}
 }

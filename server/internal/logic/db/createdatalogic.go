@@ -53,6 +53,7 @@ func (l *CreatedataLogic) Createdata(tablename string, data map[string]interface
 		l.Logger.Infof("Successfully connect to s3_endpoint: %s", s3repo.S3Endpoint)
 		l.svcCtx.S3Conn[s3repo.Name] = commontypes.S3Conn{
 			S3Endpoint: s3repo.S3Endpoint,
+			S3Region:   s3repo.S3Region,
 			Client:     client,
 		}
 	}

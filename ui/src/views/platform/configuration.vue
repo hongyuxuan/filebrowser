@@ -9,12 +9,17 @@
   </div>
   <div class="box-body" style="padding:0">
     <el-tabs v-model="activeName" type="border-card" @tab-change="changeTab" class="qingcloud-tab">
-      <el-tab-pane name="1" label="用户管理" v-if="role==='admin'">
+      <el-tab-pane name="1" label="设置">
+          <keep-alive>
+          <settings />
+        </keep-alive>
+      </el-tab-pane>
+      <el-tab-pane name="2" label="用户管理" v-if="role==='admin'">
           <keep-alive>
           <user />
         </keep-alive>
       </el-tab-pane>
-      <el-tab-pane name="2" label="S3接入管理">
+      <el-tab-pane name="3" label="S3接入管理">
           <keep-alive>
           <s3 />
         </keep-alive>
@@ -30,6 +35,7 @@ import { ref, computed } from 'vue'
 import { useStore } from 'vuex'
 import s3 from './s3.vue'
 import user from './user.vue'
+import settings from './settings.vue'
 /* 变量定义 */
 const store = useStore()
 const role = computed(() => {

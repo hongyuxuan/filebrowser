@@ -21,3 +21,9 @@ type S3Repository struct {
 	UseSecure   bool      `json:"use_secure"`
 	UpdateAt    time.Time `json:"update_at"`
 }
+
+type Settings struct {
+	Id           int    `json:"id" gorm:"primaryKey;autoIncrement"`
+	SettingKey   string `json:"setting_key" gorm:"unique"`
+	SettingValue string `json:"setting_value"`
+}

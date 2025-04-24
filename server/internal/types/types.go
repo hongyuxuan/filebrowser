@@ -60,3 +60,10 @@ type ListObjectRequest struct {
 	Name string `form:"name"`
 	Path string `form:"path"`
 }
+
+type CreateBucketRequest struct {
+	Name          string `form:"name"`
+	BucketName    string `json:"bucket_name"`
+	Versioning    bool   `json:"versioning,optional"`
+	ObjectLocking bool   `json:"object_locking,optional"`
+}
